@@ -1,5 +1,6 @@
 import { html } from "lit";
 import { RouterState } from "../router.js";
+import { createState } from "../state.js";
 
 export function UserView() {
     const state = createState({
@@ -14,22 +15,4 @@ export function UserView() {
         <p>User view for user ID ${RouterState.params.id}</p>
         <button @click=${incrementLike}>Like this profile. Likes: ${state.likes}</button>
     `;
-}
-
-/**
- * @template { Record<string, unknown> } T
- * @param { T } stateObj
- *
- * @returns {T}
- */
-function createState(stateObj) {
-    return new Proxy(stateObj, {
-        get(target, prop, receiver) {
-            return Reflect.get(target, prop, receiver);
-        },
-        set(target, prop, newValue, receiver) {
-            RouterState.reRender();
-            return Reflect.set(target, prop, newValue, receiver);
-        },
-    });
 }
