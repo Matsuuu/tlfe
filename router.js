@@ -66,7 +66,11 @@ let matchingRoute;
 let matchData;
 
 for (const route of routes) {
-    const pattern = new URLPattern(route.path, window.location.origin);
+    let origin = window.location.origin;
+    if (window.location.host.startsWith("matsuuu.github")) {
+        origin += "/tlfe";
+    }
+    const pattern = new URLPattern(route.path, origin);
     const match = pattern.exec(window.location.href);
     if (match) {
         matchingRoute = route;
