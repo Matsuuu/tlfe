@@ -18,12 +18,12 @@ export class NavigationEvent extends Event {
 /**
  * @typedef View
  * @prop path { string }
- * @prop view { Function }
+ * @prop view { () => () => import("lit").TemplateResult }
  * */
 
 class RouterStateInstance extends EventTarget {
     /**
-     * @type {View}
+     * @type {() => import("lit").TemplateResult}
      */
     currentView;
 
@@ -49,7 +49,9 @@ class RouterStateInstance extends EventTarget {
     }
 
     reRender() {
-        render(this.currentView(), document.body);
+        if (this.currentView) {
+            render(this.currentView(), document.body);
+        }
     }
 }
 
