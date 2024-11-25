@@ -1,3 +1,4 @@
+import { render } from "lit";
 import { HomeView } from "./views/HomeView.js";
 import { UserListingView } from "./views/UserListingView.js";
 import { UserView } from "./views/UserView.js";
@@ -25,6 +26,7 @@ class RouterStateInstance extends EventTarget {
      * @type {View}
      */
     currentView;
+
     /**
      * @type { Record<string, string>}
      * */
@@ -40,9 +42,14 @@ class RouterStateInstance extends EventTarget {
      */
     handleEvent(ev) {
         if (ev instanceof NavigationEvent) {
-            this.currentView = ev.view;
+            this.currentView = ev.view.view();
             this.params = ev.params;
+            this.reRender();
         }
+    }
+
+    reRender() {
+        render(this.currentView(), document.body);
     }
 }
 
@@ -81,5 +88,4 @@ for (const route of routes) {
 
 if (matchingRoute) {
     RouterState.dispatchEvent(new NavigationEvent(matchingRoute, matchData.pathname.groups));
-    document.body.innerHTML = matchingRoute.view();
 }

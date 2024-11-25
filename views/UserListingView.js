@@ -1,7 +1,9 @@
-export function UserListingView() {
-  return `
-<p>Hello from listing!</p>
+import { html } from "lit";
 
-<a href="/"> Go back home</a>
-`;
+export function UserListingView() {
+    return html`
+        <p>Hello from listing!</p>
+
+        <a href="/"> Go back home</a>
+    `;
 }

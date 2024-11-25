@@ -12,5 +12,8 @@
   "devDependencies": {
     "urlpattern-polyfill": "^10.0.0",
     "vite": "^5.4.11"
+  },
+  "dependencies": {
+    "lit": "^3.2.1"
   }
 }
