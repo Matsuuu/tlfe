@@ -1,0 +1,19 @@
+{
+  "name": "tlfe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "vite": "^6.0.1"
+  },
+  "dependencies": {
+    "lit-html": "^3.2.1",
+    "urlpattern-polyfill": "^10.0.0"
+  }
+}
